@@ -1,16 +1,28 @@
-int led = D7;  // The on-board LED
+
+
+int DHTPIN = 3;
+
+#define DHTTYPE DHT22
+
+int DHTTYPE;
+
+String temp;
+
 
 void setup() {
-  pinMode(led, OUTPUT);
+    
+   
 }
 
 void loop() {
-  digitalWrite(led, HIGH);   // Turn ON the LED
+    delay (1000);
+    // Wait for 1 second.
 
-  String temp = String(random(60, 80));
-  Particle.publish("temp", temp, PRIVATE);
-  delay(30000);               // Wait for 30 seconds
+  temp = digitalRead(DHTPIN);
+  Particle.publish("temp", String(temp), PRIVATE);
+  delay(3000);               // Wait for 3 seconds.
 
-  digitalWrite(led, LOW);    // Turn OFF the LED
-  delay(30000);               // Wait for 30 seconds
+      
+
+
 }
